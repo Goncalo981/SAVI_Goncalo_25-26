@@ -1,0 +1,36 @@
+from copy import deepcopy
+import cv2  # import the opencv library
+import numpy as np
+
+# main function, where our code should be
+def main():
+    print("python main function")
+
+    image = cv2.imread('lake.jpg', cv2.IMREAD_COLOR)
+    cv2.imshow('Original', image) 
+    original_image = image 
+    h, w, channels = image.shape
+    factor = 1
+    middle_width = round(w/2)  # arredonda 
+
+    factors = np.linspace(1,0,100)
+    print('factors = ' + str(factors))
+
+    for factor in factors: 
+
+        image = deepcopy(original_image)
+
+        for y in range(0, h):  #iterate all rows 
+            for x in range(middle_width, w):
+                bgr = image[y,x, :]   #darken this pixel
+                bgr_darkened = bgr * 0.5
+                image[y,x,:] = bgr_darkened
+        
+        cv2.imshow('Darkened', image)
+        cv2.waitKey(25)  # 0 means wait forever until a key is pressed
+
+    cv2.waitKey(0)
+
+
+if __name__ == '__main__':
+    main()

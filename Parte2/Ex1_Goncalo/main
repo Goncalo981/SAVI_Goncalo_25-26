@@ -1,0 +1,31 @@
+import cv2 
+
+
+def main():
+    print("python main function")
+
+    image = cv2.imread('C:/Universidade/Mestrado/2o Ano/SAVI/savi_Goncalo/Ex1_Goncalo/lake.jpg', cv2.IMREAD_GRAYSCALE)
+
+    #Print info on the image 
+    print(type(image))
+    print('shape=' + str(image.shape))
+
+    #get the color of the topleft most pixel
+    color=image[0,0]
+    print('Color of the most topleft pixel:' +str(color))
+
+    #black retangle on the left side of the image 
+    #image[0:30, 0:70] = 0  #0 is color black
+   
+    image[450:500,:] = 255
+    image[:,50:90] = 100
+
+
+    cv2.imshow('My window name', image)
+    cv2.waitKey(0) #0 means wait forever until a key is ...
+
+if __name__ == '__main__':
+    main()
+
+
+
